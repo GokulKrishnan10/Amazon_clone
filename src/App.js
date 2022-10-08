@@ -10,24 +10,22 @@ import { useStateValue } from "./StateProvider";
 function App() {
   const [{}, dispatch] = useStateValue();
   useEffect(() => {
-    return () => {
-      //run only once when the app component loads
-      console.log("Not working");
-      auth.onAuthStateChanged((authUser) => {
-        console.log("USER IS ", authUser);
-        if (authUser) {
-          dispatch({
-            type: "SET_USER",
-            user: authUser,
-          });
-        } else {
-          dispatch({
-            type: "SET_USER",
-            user: null,
-          });
-        }
-      });
-    };
+    //run only once when the app component loads
+    console.log("Not working");
+    auth.onAuthStateChanged((authUser) => {
+      console.log("USER IS ", authUser);
+      if (authUser) {
+        dispatch({
+          type: "SET_USER",
+          user: authUser,
+        });
+      } else {
+        dispatch({
+          type: "SET_USER",
+          user: null,
+        });
+      }
+    });
   }, []);
   return (
     <Router>
