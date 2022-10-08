@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "challange-c0e2b"
+  },
+  "targets": {
+    "challange-c0e2b": {
+      "hosting": {
+        "build": [
+          "amzc4468"
+        ]
+      }
+    }
   }
 }
