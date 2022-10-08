@@ -12,6 +12,7 @@ function App() {
   useEffect(() => {
     return () => {
       //run only once when the app component loads
+      console.log("Not working");
       auth.onAuthStateChanged((authUser) => {
         console.log("USER IS ", authUser);
         if (authUser) {
