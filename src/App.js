@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { auth } from "./firebase";
 import { useStateValue } from "./StateProvider";
 import Payment from "./Payment";
+import Orders from "./Orders";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 const promise = loadStripe(
@@ -53,6 +54,16 @@ function App() {
               <>
                 <Header />
                 <Checkout />
+              </>
+            }
+          />
+          <Route
+            exact
+            path="/orders"
+            element={
+              <>
+                <Header />
+                <Orders />
               </>
             }
           />

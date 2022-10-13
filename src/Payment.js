@@ -3,16 +3,11 @@ import React, { useState, useEffect } from "react";
 import "./Payment.css";
 import { useStateValue } from "./StateProvider";
 import CheckoutProduct from "./CheckoutProduct";
-import axios from "axios";
-import {
-  CardElement,
-  useStripe,
-  useElements,
-  Elements,
-} from "@stripe/react-stripe-js";
+import axios from "./axios";
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import CurrencyFormat from "react-currency-format";
 import { getBasketTotal } from "./reducer";
-import { instance } from "./axios";
+import { db } from "./firebase";
 function Payment() {
   const [{ basket, user }, dispatch] = useStateValue();
   const history = useNavigate();
@@ -34,6 +29,9 @@ function Payment() {
     };
     getClientSecret();
   }, [basket]);
+
+  console.log("Secret is >>>>>>>>>>>>", clientSecret);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setProcessing(true);
@@ -43,11 +41,24 @@ function Payment() {
           card: elements.getElement(CardElement),
         },
       })
-      .then(({ paymentIntend }) => {
+      .then(({ paymentIntent }) => {
+        db.collection("users")
+          .doc(user?.uid)
+          .collection("orders")
+          .doc(paymentIntent.id)
+          .set({
+            basket: basket,
+            amount: paymentIntent.amount,
+            created: paymentIntent.created,
+          });
         setSucceeded(true);
         setError(null);
-        setProcessing(null);
-        history.replace("/orders");
+        setProcessing(false);
+        dispatch({
+          type: "EMPTY_BASKET",
+        });
+        history("/orders", { replace: true });
+        //history.replace("/orders");
       });
   };
   const handleChange = (event) => {
