@@ -16,8 +16,8 @@ function Payment() {
   const [error, setError] = useState(null);
   const [disabled, setDisabled] = useState(true);
   const [succeeded, setSucceeded] = useState(false);
-  const [processing, setProcessing] = useState("");
-  const [clientSecret, setClientSecret] = useState(true);
+  const [processing, setProcessing] = useState(false);
+  const [clientSecret, setClientSecret] = useState("");
   useEffect(() => {
     //special stripe secret that's gonna charge a customer
     const getClientSecret = async () => {
@@ -33,6 +33,7 @@ function Payment() {
   console.log("Secret is >>>>>>>>>>>>", clientSecret);
 
   const handleSubmit = async (event) => {
+    console.log("USER id", user?.uid);
     event.preventDefault();
     setProcessing(true);
     const payload = await stripe
@@ -51,6 +52,7 @@ function Payment() {
             amount: paymentIntent.amount,
             created: paymentIntent.created,
           });
+
         setSucceeded(true);
         setError(null);
         setProcessing(false);
@@ -59,6 +61,7 @@ function Payment() {
         });
         history("/orders", { replace: true });
         //history.replace("/orders");
+        console.log("Payment successful");
       });
   };
   const handleChange = (event) => {
