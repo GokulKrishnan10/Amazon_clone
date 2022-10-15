@@ -12,6 +12,7 @@ function Home() {
         />
         <div className="home_row">
           <Product
+            id={12}
             title="Harry Potter-The Philosphers Stone part one of the Harry Potter series
           written by author J K Rownling"
             price={29.9}
@@ -21,6 +22,7 @@ function Home() {
             rating={5}
           />
           <Product
+            id={12}
             title="Apple - iphone 14 pro"
             price={29.9}
             image="https://media.wired.com/photos/631a469e40fe1e8870aa39c8/master/w_2560%2Cc_limit/How-to-Preorder-iPhone-14-and-iPhone-14-Pro-Gear.png"
@@ -30,6 +32,7 @@ function Home() {
         </div>
         <div className="home_row">
           <Product
+            id="7893247823479"
             title="Harry Potter-The Philosphers Stone part one of the Harry Potter series
           written by author J K Rownling"
             price={29.9}
@@ -39,6 +42,7 @@ function Home() {
             rating={5}
           />
           <Product
+            id="782347837924"
             title="Harry Potter-The Philosphers Stone part one of the Harry Potter series
           written by author J K Rownling"
             price={29.9}
@@ -48,6 +52,7 @@ function Home() {
             rating={5}
           />
           <Product
+            id="6734678324"
             title="Harry Potter-The Philosphers Stone part one of the Harry Potter series
           written by author J K Rownling"
             price={29.9}
@@ -59,6 +64,7 @@ function Home() {
         </div>
         <div className="home_row">
           <Product
+            id="62345634"
             title="Harry Potter-The Philosphers Stone part one of the Harry Potter series
           written by author J K Rownling"
             price={29.9}

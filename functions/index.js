@@ -5,33 +5,60 @@ const stripe = require("stripe")(
   "sk_test_51LqrtbSCunDdsSbjE25W8oqrdLOHVnXX5nzkrtWHieaOpgVHbUq18FYHZHuSEsrCJMRb6fAoYeVHmfKlRVHiCZ3V004HHV7taC"
 );
 //-API
-
-//-App config
 const app = express();
-//-Middlewares
+
+// - Middlewares
 app.use(cors({ origin: true }));
 app.use(express.json());
 
-//-API routes
-
-app.get("/", (request, response) => response.status(200).send("Hello World"));
+// - API routes
+app.get("/", (request, response) => response.status(200).send("hello world"));
 
 app.post("/payments/create", async (request, response) => {
   const total = request.query.total;
-  console.log(
-    "Payment Request Received >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.",
-    total
-  );
+
+  console.log("Payment Request Recieved BOOM!!! for this amount >>> ", total);
+
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: total,
+    amount: total, // subunits of the currency
     currency: "usd",
   });
+
+  // OK - Created
   response.status(201).send({
     clientSecret: paymentIntent.client_secret,
   });
 });
-//-Listen Command
+
+// - Listen command
 exports.api = functions.https.onRequest(app);
 
-//Example end point
-// http://localhost:5001/challange-c0e2b/us-central1/api
+// //-App config
+// const app = express();
+// //-Middlewares
+// app.use(cors({ origin: true }));
+// app.use(express.json());
+
+// //-API routes
+
+// app.get("/", (request, response) => response.status(200).send("Hello World"));
+
+// app.post("/payments/create", async (request, response) => {
+//   const total = request.query.total;
+//   console.log(
+//     "Payment Request Received >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.",
+//     total
+//   );
+//   const paymentIntent = await stripe.paymentIntent.create({
+//     amount: total,
+//     currency: "usd",
+//   });
+//   response.status(201).send({
+//     clientSecret: paymentIntent.client_secret,
+//   });
+// });
+// //-Listen Command
+// exports.api = functions.https.onRequest(app);
+
+// //Example end point
+// // http://localhost:5001/challange-c0e2b/us-central1/api
