@@ -76,39 +76,6 @@ function Payment() {
         //history.replace("/orders");
       });
   };
-  // const handleSubmit = async (event) => {
-  //   console.log("USER id", user?.uid);
-  //   event.preventDefault();
-  //   setProcessing(true);
-  //   const payload = await stripe
-  //     .confirmCardPayment(clientSecret, {
-  //       payment_method: {
-  //         card: elements.getElement(CardElement),
-  //       },
-  //     })
-  //     .then(({ paymentIntent }) => {
-  //       console.log("Payment intent id is", paymentIntent?.id);
-  //       db.collection("users")
-  //         .doc(user?.uid)
-  //         .collection("orders")
-  //         .doc(paymentIntent?.id)
-  //         .set({
-  //           basket: basket,
-  //           amount: paymentIntent?.amount,
-  //           created: paymentIntent?.created,
-  //         });
-
-  //       setSucceeded(true);
-  //       setError(null);
-  //       setProcessing(false);
-  //       dispatch({
-  //         type: "EMPTY_BASKET",
-  //       });
-  //       history("/orders", { replace: true });
-  //       //history.replace("/orders");
-  //       console.log("Payment successful");
-  //     });
-  // };
   const handleChange = (event) => {
     //Listen for changes in the card element
     //Display errors as customer types their card details
