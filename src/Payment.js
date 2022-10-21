@@ -3,10 +3,10 @@ import React, { useState, useEffect } from "react";
 import "./Payment.css";
 import { useStateValue } from "./StateProvider";
 import CheckoutProduct from "./CheckoutProduct";
-import axios from "./axios";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import CurrencyFormat from "react-currency-format";
 import { getBasketTotal } from "./reducer";
+import axios from "./axios";
 import { db } from "./firebase";
 
 function Payment() {
@@ -14,11 +14,13 @@ function Payment() {
   const history = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
-  const [error, setError] = useState(null);
-  const [disabled, setDisabled] = useState(true);
+
   const [succeeded, setSucceeded] = useState(false);
   const [processing, setProcessing] = useState(false);
-  const [clientSecret, setClientSecret] = useState("");
+  const [error, setError] = useState(null);
+  const [disabled, setDisabled] = useState(true);
+  const [clientSecret, setClientSecret] = useState(true);
+
   useEffect(() => {
     //special stripe secret that's gonna charge a customer
     const getClientSecret = async () => {
@@ -38,20 +40,30 @@ function Payment() {
     setProcessing(true);
     delete basket.id;
     console.log("bBBBBBBBBasket is ", basket);
+
     const payload = await stripe
       .confirmCardPayment(clientSecret, {
         payment_method: {
           card: elements.getElement(CardElement),
         },
       })
-      .then(({ paymentIntent }) => {
-        // paymentIntent = payment confirmation
-
-        db.collection("users").add({
-          basket: basket,
-          amount: getBasketTotal(basket),
-          created: "yes",
-        });
+      .then(({ error, paymentIntent }) => {
+        // paymentIntent = payment confirmation\
+        console.log(error);
+        let payment = paymentIntent;
+        if (error || !paymentIntent) {
+          payment = error["payment_intent"];
+        }
+        console.log("Payment Intent", paymentIntent);
+        db.collection("users")
+          .doc(user?.uid)
+          .collection("orders")
+          .doc(payment.id)
+          .set({
+            basket: basket,
+            amount: payment.amount,
+            created: payment.created,
+          });
 
         setSucceeded(true);
         setError(null);
