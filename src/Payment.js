@@ -33,13 +33,12 @@ function Payment() {
     getClientSecret();
   }, [basket]);
 
-  console.log("Secret is >>>>>>>>>>>>", clientSecret);
+  console.log("Secret is: ", clientSecret);
   const handleSubmit = async (event) => {
     // do all the fancy stripe stuff...
     event.preventDefault();
     setProcessing(true);
     delete basket.id;
-    console.log("bBBBBBBBBasket is ", basket);
 
     const payload = await stripe
       .confirmCardPayment(clientSecret, {
@@ -49,7 +48,6 @@ function Payment() {
       })
       .then(({ error, paymentIntent }) => {
         // paymentIntent = payment confirmation\
-        console.log(error);
         console.log("Payment Intent", paymentIntent);
         db.collection("users")
           .doc(user?.uid)

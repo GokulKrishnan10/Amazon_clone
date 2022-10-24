@@ -23,7 +23,6 @@ function Login() {
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((auth) => {
-        console.log("Oh NO ", auth);
         if (auth) {
           history("/");
         }
