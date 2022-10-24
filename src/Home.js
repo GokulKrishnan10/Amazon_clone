@@ -24,7 +24,7 @@ function Home() {
           <Product
             id="97878789"
             title="Apple - iphone 14 pro"
-            price={29}
+            price={290000}
             image="https://media.wired.com/photos/631a469e40fe1e8870aa39c8/master/w_2560%2Cc_limit/How-to-Preorder-iPhone-14-and-iPhone-14-Pro-Gear.png"
             rating={5}
           />
@@ -45,7 +45,7 @@ function Home() {
             id="782347837924"
             title="Harry Potter-The Philosphers Stone part one of the Harry Potter series
           written by author J K Rownling"
-            price={29}
+            price={920}
             image="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSD2c1bz9
           x3ogunbqj43GkdLCC7aDSgy0-q70hXjrZZARV4o_pcpzRmX1_BfgLafN9WRB3XoQKRcySGwg
           hSzWWck6QnYmwobPbtk3vA1jAA6jn9x70VUsZr&usqp=CAY"
@@ -55,7 +55,7 @@ function Home() {
             id="6734678324"
             title="Harry Potter-The Philosphers Stone part one of the Harry Potter series
           written by author J K Rownling"
-            price={29}
+            price={920}
             image="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSD2c1bz9
           x3ogunbqj43GkdLCC7aDSgy0-q70hXjrZZARV4o_pcpzRmX1_BfgLafN9WRB3XoQKRcySGwg
           hSzWWck6QnYmwobPbtk3vA1jAA6jn9x70VUsZr&usqp=CAY"
@@ -67,7 +67,7 @@ function Home() {
             id="62345634"
             title="Harry Potter-The Philosphers Stone part one of the Harry Potter series
           written by author J K Rownling"
-            price={29}
+            price={79000}
             image="https://toshibatv-in.com/wp-content/uploads/2020/08/TO-L50-WB-AD-02.jpg"
             rating={5}
           />
