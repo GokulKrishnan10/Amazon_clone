@@ -50,19 +50,15 @@ function Payment() {
       .then(({ error, paymentIntent }) => {
         // paymentIntent = payment confirmation\
         console.log(error);
-        let payment = paymentIntent;
-        if (error || !paymentIntent) {
-          payment = error["payment_intent"];
-        }
         console.log("Payment Intent", paymentIntent);
         db.collection("users")
           .doc(user?.uid)
           .collection("orders")
-          .doc(payment.id)
+          .doc(paymentIntent.id)
           .set({
             basket: basket,
-            amount: payment.amount,
-            created: payment.created,
+            amount: paymentIntent.amount,
+            created: paymentIntent.created,
           });
 
         setSucceeded(true);
@@ -136,7 +132,7 @@ function Payment() {
                   value={getBasketTotal(basket)}
                   displayType={"text"}
                   thousandSeparator={true}
-                  prefix={"$"}
+                  prefix={"₹"}
                 />
                 <button disabled={processing || disabled || succeeded}>
                   <span>{processing ? <p>Processing</p> : "Buy Now"}</span>

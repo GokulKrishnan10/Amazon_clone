@@ -18,6 +18,7 @@ function Order({ order }) {
           image={item.image}
           price={item.price}
           rating={item.rating}
+          hideButton
         />
       ))}
       <CurrencyFormat
@@ -30,7 +31,7 @@ function Order({ order }) {
         value={order.data.amount / 100}
         displayType={"text"}
         thousandSeparator={true}
-        prefix={"$"}
+        prefix={"₹"}
       />
     </div>
   );
